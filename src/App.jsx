@@ -9,10 +9,12 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getCurrentUser } from "./redux/modules/authSlice";
+import { __getComments } from "./redux/modules/commentsSlice";
 
 function App() {
   const dispatch = useDispatch();
   const currentTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
+
   // 사용자 정보 확인
   useEffect(() => {
     const userToken = localStorage.getItem("token");
@@ -25,6 +27,12 @@ function App() {
       })
     );
   }, []);
+
+  // 게시물 가져오기
+  useEffect(() => {
+    dispatch(__getComments());
+  }, []);
+
   return (
     <StWrapper>
       <ThemeProvider theme={theme[currentTeam]}>

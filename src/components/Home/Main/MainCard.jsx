@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { dateFormat } from "../../../commonData";
 
 const MainCard = ({ filteredComment }) => {
-  const commentDate = dateFormat(filteredComment.date);
+  const commentDate = dateFormat(filteredComment.createdAt);
 
   const navigate = useNavigate();
   const navigateToDetail = () => {
@@ -20,7 +20,7 @@ const MainCard = ({ filteredComment }) => {
         <StUserNameH2>{filteredComment.nickname} 님</StUserNameH2>
       </StCommentFirstLineDiv>
 
-      <StCommentP>{filteredComment.comment}</StCommentP>
+      <StCommentP>{filteredComment.content}</StCommentP>
     </StLi>
   );
 };

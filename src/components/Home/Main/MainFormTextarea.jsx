@@ -1,19 +1,18 @@
 import React from "react";
 import styled from "styled-components";
-import { initTeams } from "../../../commonData";
 import { useSelector } from "react-redux";
 
 const MainFormTextarea = ({
-  commentsTextAreaValue,
-  commentTextareaChangeHandler,
+  contentTextAreaValue,
+  contentTextareaChangeHandler,
 }) => {
   const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   return (
     <StDiv>
       <label selected={selectTeam}>응원의 말</label>
       <StTextarea
-        value={commentsTextAreaValue}
-        onChange={commentTextareaChangeHandler}
+        value={contentTextAreaValue}
+        onChange={contentTextareaChangeHandler}
         placeholder={`최대 100글자까지 작성할 수 있습니다.`}
         maxLength={100}
         required

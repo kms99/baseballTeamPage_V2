@@ -7,7 +7,7 @@ const DetailPageCardUser = () => {
   return (
     <StUser>
       <StUserImg $img={findData.avatar}></StUserImg>
-      <StUserName>{findData.user}</StUserName>
+      <StUserName>{findData.nickname}</StUserName>
       <StTeam>{findData.team}</StTeam>
     </StUser>
   );

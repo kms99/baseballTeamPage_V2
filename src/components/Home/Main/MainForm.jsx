@@ -6,58 +6,57 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import avatar from "../../../style/image/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../../../redux/modules/commentsSlice";
+import { __postComments } from "../../../redux/modules/commentsSlice";
 import MainFormTextarea from "./MainFormTextarea";
 
 const MainForm = () => {
   const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
-  const [commentsTextAreaValue, setCommentsTextAreaValue] = useState("");
+  const [contentTextAreaValue, setContentTextAreaValue] = useState("");
 
   const dispatch = useDispatch();
 
-  const userNickname = useSelector(
-    (state) => state.authSlice.userData.nickname
-  );
+  const userInfo = useSelector((state) => state.authSlice.userData);
 
   // 팀변경시 input 값 초기화
   useEffect(() => {
-    setCommentsTextAreaValue("");
+    setContentTextAreaValue("");
   }, [selectTeam]);
   //   form submit 이벤트
-  const teamCommentSubmitHandler = (e) => {
+  const teamContentSubmitHandler = (e) => {
     e.preventDefault();
     // 부모 컴포넌트에 건내줄 새로운 배열
     const newComment = {
-      nickname: userNickname,
-      comment: commentsTextAreaValue,
-      team: initTeams[selectTeam].text,
       id: uuidv4(),
-      date: new Date().getTime(),
-      avatar,
+      nickname: userInfo.nickname,
+      content: contentTextAreaValue,
+      avatar: "dummy",
+      team: initTeams[selectTeam].text,
+      createdAt: new Date().getTime(),
+      userId: userInfo.id,
     };
     // input 값 초기화
-    setCommentsTextAreaValue("");
-    dispatch(addComment(newComment));
+    setContentTextAreaValue("");
+    dispatch(__postComments(newComment));
   };
 
   //comment Value Handler
-  const commentTextareaChangeHandler = (e) => {
-    setCommentsTextAreaValue(e.target.value);
+  const contentTextareaChangeHandler = (e) => {
+    setContentTextAreaValue(e.target.value);
   };
 
   return (
-    <StForm selected={selectTeam} onSubmit={teamCommentSubmitHandler}>
+    <StForm selected={selectTeam} onSubmit={teamContentSubmitHandler}>
       <StImageDiv selected={selectTeam}></StImageDiv>
       <div>
         <MainFormTeamSelectBox />
         <StNicknameContainer>
           <label>닉네임</label>
-          <span>{userNickname}</span>
+          <span>{userInfo.nickname}</span>
         </StNicknameContainer>
         <MainFormTextarea
-          commentTextareaChangeHandler={commentTextareaChangeHandler}
-          commentsTextAreaValue={commentsTextAreaValue}
+          contentTextareaChangeHandler={contentTextareaChangeHandler}
+          contentTextAreaValue={contentTextAreaValue}
         />
         <MainFormButton text="작성하기" />
       </div>

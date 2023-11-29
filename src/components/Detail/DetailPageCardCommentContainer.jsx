@@ -22,14 +22,14 @@ const DetailPageCardCommentContainer = () => {
 
   const [modifyMode, setModifyMode] = useState(false);
 
-  const [modifyValue, setModifyValue] = useState(findData.comment);
+  const [modifyValue, setModifyValue] = useState(findData.content);
 
-  const formatDate = dateFormat(findData.date);
+  const formatDate = dateFormat(findData.createdAt);
 
   const changeModifyModeHandler = () => {
     setModifyMode((prev) => {
       if (prev) {
-        setModifyValue(findData.comment);
+        setModifyValue(findData.content);
         return false;
       } else {
         return true;
@@ -67,7 +67,7 @@ const DetailPageCardCommentContainer = () => {
       onChange={modifyValueChangeHandler}
     />
   ) : (
-    <StUserComment>{findData.comment}</StUserComment>
+    <StUserComment>{findData.content}</StUserComment>
   );
 
   return (
@@ -112,9 +112,15 @@ const StUserCommentContainer = styled.div`
 const StUserComment = styled.p`
   font-size: 2rem;
   word-break: break-all;
-  width: 100%;
   padding: 2rem;
+  height: 80%;
   line-height: 2.5rem;
+  white-space: pre-line;
+  overflow-y: scroll;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 const StUserCommentTextArea = styled.textarea`

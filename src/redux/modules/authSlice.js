@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import api from "../../axios/api";
+import user from "../../axios/user";
 import { toast } from "react-toastify";
 
 export const __signUpUser = createAsyncThunk(
   "signUpUser",
   async (payload, thunkAPI) => {
     try {
-      const response = await api.post("/register", payload);
+      const response = await user.post("/register", payload);
       toast.success(`회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.`);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
@@ -20,7 +20,7 @@ export const __loginUser = createAsyncThunk(
   "loginUser",
   async (payload, thunkAPI) => {
     try {
-      const response = await api.post("/login?expiresIn=10m", payload);
+      const response = await user.post("/login?expiresIn=10m", payload);
       toast.success(`${response.data.nickname}님 환영합니다.`);
       console.log(response.data);
       localStorage.setItem("token", response.data.accessToken);
@@ -36,7 +36,7 @@ export const __getCurrentUser = createAsyncThunk(
   "getCurrentUser",
   async (payload, thunkAPI) => {
     try {
-      const response = await api.get("/user", payload);
+      const response = await user.get("/user", payload);
       toast.success(`${response.data.nickname}님 환영합니다.`);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
@@ -50,7 +50,7 @@ export const __updateProfile = createAsyncThunk(
   "updateProfile",
   async (payload, thunkAPI) => {
     try {
-      const response = await api.patch("/profile", payload);
+      const response = await user.patch("/profile", payload);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       return thunkAPI.rejectWithValue(err);

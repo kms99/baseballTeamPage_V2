@@ -1,3 +1,22 @@
 {
-  "letters": []
+  "letters": [
+    {
+      "id": "57d7dac0-80d7-41f6-9216-845d37311ed2",
+      "nickname": "김명섭",
+      "content": "123",
+      "avatar": "dummy",
+      "team": "두산 베어스",
+      "createdAt": 1701277189206,
+      "userId": "audtjq1234"
+    },
+    {
+      "id": "081a7aae-b794-4273-ab22-6405716b7707",
+      "nickname": "김명섭",
+      "content": "123",
+      "avatar": "dummy",
+      "team": "두산 베어스",
+      "createdAt": 1701278109643,
+      "userId": "audtjq1234"
+    }
+  ]
 }
