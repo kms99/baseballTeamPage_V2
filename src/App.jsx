@@ -4,13 +4,45 @@ import theme from "./style/theme";
 import GlobalFont from "./style/fonts";
 import background from "./style/image/background.jpg";
 import GlobalStyle from "./style/GlobalStyle";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { __getCurrentUser } from "./redux/modules/authSlice";
+import { useNavigate } from "react-router-dom";
 
 function App() {
+  const dispatch = useDispatch();
+
+  // 사용자 정보 확인
+  useEffect(() => {
+    const userToken = localStorage.getItem("token");
+    dispatch(
+      __getCurrentUser({
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
+    );
+  }, []);
   return (
     <StWrapper>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <GlobalFont />
+        <ToastContainer
+          position="top-left"
+          autoClose={2000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable
+          pauseOnHover={false}
+          theme="light"
+        />
         <Router />
       </ThemeProvider>
     </StWrapper>
