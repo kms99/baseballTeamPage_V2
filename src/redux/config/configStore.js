@@ -1,8 +1,7 @@
-import { combineReducers, createStore } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
 import team from "../modules/team";
 import comment from "../modules/comment";
 
-const rootReducer = combineReducers({ team, comment });
-const store = createStore(rootReducer);
+const store = configureStore({ reducer: { team, comment } });
 
 export default store;
