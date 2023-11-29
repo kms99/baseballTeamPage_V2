@@ -7,6 +7,7 @@ const HeaderLoginButton = ({ handler, text }) => {
 const StLoginButton = styled.button`
   font-size: 2rem;
   padding: 0.5rem 1rem;
+  cursor: pointer;
   & + button {
     margin-left: 1rem;
   }

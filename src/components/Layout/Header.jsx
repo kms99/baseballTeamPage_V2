@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { initTeams } from "../../commonData";
 import HeaderTitle from "./HeaderTitle";
 import styled from "styled-components";
@@ -6,6 +6,7 @@ import HeaderButton from "./HeaderButton";
 import { useDispatch, useSelector } from "react-redux";
 import HeaderLoginButton from "./HeaderLoginButton";
 import { logoutUser } from "../../redux/modules/authSlice";
+import { toast } from "react-toastify";
 
 const Header = ({ children }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,10 @@ const Header = ({ children }) => {
     <HeaderButton key={team.team} title={team.text} value={index} />
   ));
 
-  const logOutHandler = () => dispatch(logoutUser());
+  const logOutHandler = () => {
+    dispatch(logoutUser());
+    toast.info("로그아웃 되었습니다.");
+  };
 
   // 로그인 버튼
   const LOGIN_AREA_BUTTONS = [
