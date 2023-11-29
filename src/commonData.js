@@ -1,13 +1,13 @@
-import dosanlogo from "./image/logo/dosanlogo.svg";
-import lglogo from "./image/logo/lglogo.svg";
-import ktlogo from "./image/logo/ktlogo.svg";
-import ssglogo from "./image/logo/ssglogo.svg";
-import nclogo from "./image/logo/nclogo.svg";
-import kialogo from "./image/logo/kialogo.svg";
-import lottelogo from "./image/logo/lottelogo.svg";
-import samsunglogo from "./image/logo/samsunglogo.svg";
-import hanhwalogo from "./image/logo/hanhwalogo.svg";
-import kiwoomlogo from "./image/logo/kiwoomlogo.svg";
+import dosanlogo from "./style/image/logo/dosanlogo.svg";
+import lglogo from "./style/image/logo/lglogo.svg";
+import ktlogo from "./style/image/logo/ktlogo.svg";
+import ssglogo from "./style/image/logo/ssglogo.svg";
+import nclogo from "./style/image/logo/nclogo.svg";
+import kialogo from "./style/image/logo/kialogo.svg";
+import lottelogo from "./style/image/logo/lottelogo.svg";
+import samsunglogo from "./style/image/logo/samsunglogo.svg";
+import hanhwalogo from "./style/image/logo/hanhwalogo.svg";
+import kiwoomlogo from "./style/image/logo/kiwoomlogo.svg";
 
 export const initTeams = [
   {

@@ -5,7 +5,7 @@ import MainFormButton from "./MainFormButton";
 import MainFormTeamSelectBox from "./MainFormTeamSelectBox";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
-import avata from "../../../image/avatar.png";
+import avata from "../../../style/image/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
 import { addComment } from "../../../redux/modules/comment";
 

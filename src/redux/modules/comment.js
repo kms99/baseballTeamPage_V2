@@ -1,5 +1,3 @@
-import dummy from "../../db/data.json";
-
 // action value
 export const ADD_COMMENT = "ADD_COMMENT";
 export const DELETE_COMMENT = "DELETE_COMMENT";
@@ -36,7 +34,7 @@ export const setCurrentCommentData = (payload) => {
 };
 
 const initialState = {
-  comments: JSON.parse(localStorage.getItem("comments")) || dummy,
+  comments: JSON.parse(localStorage.getItem("comments")) || [],
   findData: {},
 };
 

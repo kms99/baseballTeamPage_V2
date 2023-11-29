@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import prevImg from "../image/prevBtn.svg";
+import prevImg from "../style/image/prevBtn.svg";
 import DetailPageCard from "../components/Detail/DetailPageCard";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setCurrentCommentData } from "../redux/modules/comment";
 
 const Detail = () => {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dateFormat } from "../../commonData";
-import modifyImg from "../../image/modify.svg";
-import deleteImg from "../../image/delete.svg";
+import modifyImg from "../../style/image/modify.svg";
+import deleteImg from "../../style/image/delete.svg";
 import DetailPageCardButton from "./DetailPageCardButton";
 import { useNavigate } from "react-router-dom";
 import DetailPageCommentModifyBtn from "./DetailPageCommentModifyBtn";
