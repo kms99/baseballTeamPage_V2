@@ -23,7 +23,7 @@ const HeaderTitle = () => {
 const StTitle = styled.h1`
   font-size: 4rem;
   font-family: "BlackHanSans", sans-serif;
-  color: ${(props) => props.theme.subColor[initTeams[props.selected].team]};
+  color: ${(props) => props.theme.subColor};
   transition: all 0.5s;
   cursor: pointer;
 `;

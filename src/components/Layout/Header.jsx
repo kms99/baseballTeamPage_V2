@@ -55,10 +55,7 @@ const StHeader = styled.header`
   flex-direction: column;
   align-items: center;
   padding: 3rem;
-  background: linear-gradient(
-    ${(props) => props.theme.mainColor[initTeams[props.selected].team]},
-    #000
-  );
+  background: linear-gradient(${(props) => props.theme.mainColor}, #000);
 `;
 
 const StButtonDiv = styled.div`

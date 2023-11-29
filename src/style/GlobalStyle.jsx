@@ -28,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
 		height: auto;
 	}
 
-	input,div,ul,li,h3{
+	input,div,ul,li,h3,textarea{
 		box-sizing:border-box;
 	}
 

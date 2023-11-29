@@ -10,7 +10,6 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="loginSignUp/:mode" element={<LoginSignUp />} />
-
         <Route
           path="/"
           element={isLogin ? <Layout /> : <Navigate to="loginSignUp/login" />}

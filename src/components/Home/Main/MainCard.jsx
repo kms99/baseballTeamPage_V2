@@ -17,7 +17,7 @@ const MainCard = ({ filteredComment }) => {
       <StUserImg $img={filteredComment.avatar}></StUserImg>
       <StCommentFirstLineDiv>
         <StTeamNameH3>{filteredComment.team}</StTeamNameH3>
-        <StUserNameH2>{filteredComment.user} 님</StUserNameH2>
+        <StUserNameH2>{filteredComment.nickname} 님</StUserNameH2>
       </StCommentFirstLineDiv>
 
       <StCommentP>{filteredComment.comment}</StCommentP>

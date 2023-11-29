@@ -1,29 +1,55 @@
-// 자주 사용하는 색을 객체로 만들자.
-const mainColor = {
-  dusan: "#131230",
-  lg: "#2A2627",
-  kt: "#080808",
-  ssg: "#D11233",
-  nc: "#244C81",
-  kia: "#EC0830",
-  lotte: "#0C2F5B",
-  samsung: "#0C65B0",
-  hanhwa: "#080808",
-  kiwoom: "#810D28",
+const dusanTheme = {
+  mainColor: "#131230",
+  subColor: "#ED1C24",
+};
+const lgTheme = {
+  mainColor: "#2A2627",
+  subColor: "#CA1254",
+};
+const ktTheme = {
+  mainColor: "#080808",
+  subColor: "#EE222A",
+};
+const ssgTheme = {
+  mainColor: "#D11233",
+  subColor: "#FFFFFF",
+};
+const ncTheme = {
+  mainColor: "#244C81",
+  subColor: "#C9A37D",
+};
+const kiaTheme = {
+  mainColor: "#EC0830",
+  subColor: "#0E1B26",
+};
+const lotteTheme = {
+  mainColor: "#0C2F5B",
+  subColor: "#DD102E",
+};
+const samsungTheme = {
+  mainColor: "#0C65B0",
+  subColor: "#C0C2C5",
+};
+const hanhwaTheme = {
+  mainColor: "#080808",
+  subColor: "#F14C2B",
+};
+const kiwoomTheme = {
+  mainColor: "#810D28",
+  subColor: "#FFFFFF",
 };
 
-const subColor = {
-  dusan: "#ED1C24",
-  lg: "#CA1254",
-  kt: "#EE222A",
-  ssg: "#FFFFFF",
-  nc: "#C9A37D",
-  kia: "#0E1B26",
-  lotte: "#DD102E",
-  samsung: "#C0C2C5",
-  hanhwa: "#F14C2B",
-  kiwoom: "#FFFFFF",
-};
+const theme = [
+  dusanTheme,
+  lgTheme,
+  ktTheme,
+  ssgTheme,
+  ncTheme,
+  kiaTheme,
+  lotteTheme,
+  samsungTheme,
+  hanhwaTheme,
+  kiwoomTheme,
+];
 
-const theme = { mainColor, subColor };
 export default theme;

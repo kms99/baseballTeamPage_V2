@@ -70,8 +70,7 @@ const StCommentDiv = styled.div`
     width: 8px;
   }
   &::-webkit-scrollbar-thumb {
-    background: ${(props) =>
-      props.theme.mainColor[initTeams[props.selected].team]};
+    background: ${(props) => props.theme.mainColor};
     border-radius: 10px; /* 스크롤바 둥근 테두리 */
   }
   & > h2 {

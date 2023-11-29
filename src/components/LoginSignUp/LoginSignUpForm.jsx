@@ -25,9 +25,9 @@ const INPUT_TYPE = [
 const LoginSignUpForm = ({ currentMode, mode }) => {
   const dispatch = useDispatch();
 
-  const isLogin = useSelector((state) => state.authSlice.isLogin);
-
   const navigate = useNavigate();
+
+  const isLogin = useSelector((state) => state.authSlice.isLogin);
 
   useEffect(() => {
     if (isLogin) navigate("/");
@@ -70,6 +70,8 @@ const LoginSignUpForm = ({ currentMode, mode }) => {
     if (mode === "signUp") {
       const signUpData = userAuthInput;
       dispatch(__signUpUser(signUpData));
+      navigate("/loginSignUp/login");
+      setUserAuthInput({ id: "", password: "", nickname: "" });
     } else if (mode === "login") {
       const { id, password } = userAuthInput;
       const loginData = { id, password };

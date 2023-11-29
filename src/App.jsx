@@ -9,11 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { __getCurrentUser } from "./redux/modules/authSlice";
-import { useNavigate } from "react-router-dom";
 
 function App() {
   const dispatch = useDispatch();
-
+  const currentTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   // 사용자 정보 확인
   useEffect(() => {
     const userToken = localStorage.getItem("token");
@@ -28,7 +27,7 @@ function App() {
   }, []);
   return (
     <StWrapper>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={theme[currentTeam]}>
         <GlobalStyle />
         <GlobalFont />
         <ToastContainer
