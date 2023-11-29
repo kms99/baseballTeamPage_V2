@@ -6,13 +6,10 @@ import MainForm from "../components/Home/Main/MainForm";
 import MainCard from "../components/Home/Main/MainCard";
 
 const Home = () => {
-  const allComment = useSelector(({ comment }) => comment.comments);
+  const allComment = useSelector((state) => state.commentsSlice.comments);
 
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
-  useEffect(() => {
-    localStorage.setItem("comments", JSON.stringify(allComment));
-  }, [allComment]);
   const filteredComments = allComment.filter(
     (comments) => comments.team === initTeams[selectTeam].text
   );

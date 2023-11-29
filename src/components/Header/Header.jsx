@@ -6,7 +6,7 @@ import HeaderButton from "./HeaderButton";
 import { useSelector } from "react-redux";
 
 const Header = ({ children }) => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   // Team Button 생성
   const teamButtons = (
     <StButtonDiv>

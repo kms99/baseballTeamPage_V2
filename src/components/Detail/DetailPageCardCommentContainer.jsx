@@ -7,19 +7,25 @@ import DetailPageCardButton from "./DetailPageCardButton";
 import { useNavigate } from "react-router-dom";
 import DetailPageCommentModifyBtn from "./DetailPageCommentModifyBtn";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteComment, modifyComment } from "../../redux/modules/comment";
+import {
+  deleteComment,
+  editComment,
+  setCurrentCommentData,
+} from "../../redux/modules/commentsSlice";
 
 const DetailPageCardCommentContainer = () => {
-  const findData = useSelector(({ comment }) => comment.findData);
-  const [modifyMode, setModifyMode] = useState(false);
-  const [modifyValue, setModifyValue] = useState(findData.comment);
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
+
+  const findData = useSelector((state) => state.commentsSlice.findData);
+
+  const [modifyMode, setModifyMode] = useState(false);
+
+  const [modifyValue, setModifyValue] = useState(findData.comment);
+
   const formatDate = dateFormat(findData.date);
-  const comment = useSelector(({ comment }) => comment.comments);
-  useEffect(() => {
-    localStorage.setItem("comments", JSON.stringify(comment));
-  }, [comment]);
+
   const changeModifyModeHandler = () => {
     setModifyMode((prev) => {
       if (prev) {
@@ -40,7 +46,9 @@ const DetailPageCardCommentContainer = () => {
       alert("변경된 내용이 없습니다.");
       return;
     }
-    dispatch(modifyComment(modifyValue));
+
+    dispatch(editComment(modifyValue));
+    dispatch(setCurrentCommentData(findData.id));
 
     setModifyMode(false);
   };
@@ -51,6 +59,7 @@ const DetailPageCardCommentContainer = () => {
       navigate("/");
     }
   };
+
   const modifyModeCommentArea = modifyMode ? (
     <StUserCommentTextArea
       value={modifyValue}

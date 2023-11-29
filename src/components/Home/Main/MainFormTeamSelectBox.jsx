@@ -2,10 +2,10 @@ import React from "react";
 import { initTeams } from "../../../commonData";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { setTeam } from "../../../redux/modules/team";
+import { setTeam } from "../../../redux/modules/teamSlice";
 
 const MainFormTeamSelectBox = () => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   const dispatch = useDispatch();
 
   const commentSelectTeamHandler = (e) => {

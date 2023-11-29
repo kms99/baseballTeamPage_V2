@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import team from "../modules/team";
-import comment from "../modules/comment";
+import teamSlice from "../modules/teamSlice";
+import commentsSlice from "../modules/commentsSlice";
 
-const store = configureStore({ reducer: { team, comment } });
+const store = configureStore({ reducer: { teamSlice, commentsSlice } });
 
 export default store;

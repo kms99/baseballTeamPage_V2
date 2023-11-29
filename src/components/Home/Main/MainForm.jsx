@@ -7,7 +7,7 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import avata from "../../../style/image/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
-import { addComment } from "../../../redux/modules/comment";
+import { addComment } from "../../../redux/modules/commentsSlice";
 
 // form 입력 부분 최초값
 const initInputData = {
@@ -16,7 +16,7 @@ const initInputData = {
 };
 
 const MainForm = () => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
   // form 입력 값 저장 state
   // 해당 State는 다른 곳에서 사용되는 것이 아닌, 직계 자식 컴포넌트에서만 사용되기 때문에 Context화 하지 않았음.
@@ -37,7 +37,7 @@ const MainForm = () => {
       ...inputData,
       team: initTeams[selectTeam].text,
       id: uuidv4(),
-      date: new Date(),
+      date: new Date().getTime(),
       avatar: avata,
     };
 

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import prevImg from "../style/image/prevBtn.svg";
 import DetailPageCard from "../components/Detail/DetailPageCard";
 import { useDispatch } from "react-redux";
-import { setCurrentCommentData } from "../redux/modules/comment";
+import { setCurrentCommentData } from "../redux/modules/commentsSlice";
 
 const Detail = () => {
   const params = useParams();

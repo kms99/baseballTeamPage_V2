@@ -4,7 +4,7 @@ import { initTeams } from "../../../commonData";
 import { useSelector } from "react-redux";
 
 const MainFormInput = ({ section, teamCommentValue, maxWidth }) => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   return (
     <StDiv>
       <StLabel selected={selectTeam}>{section.text}</StLabel>

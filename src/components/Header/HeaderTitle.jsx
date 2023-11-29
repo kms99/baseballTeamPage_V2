@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 
 const HeaderTitle = () => {
   const navigate = useNavigate();
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
   const goToHomeHandler = () => {
     navigate("/");

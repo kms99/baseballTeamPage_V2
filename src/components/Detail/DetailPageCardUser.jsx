@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useSelector } from "react-redux";
 
 const DetailPageCardUser = () => {
-  const findData = useSelector(({ comment }) => comment.findData);
+  const findData = useSelector((state) => state.commentsSlice.findData);
   return (
     <StUser>
       <StUserImg $img={findData.avatar}></StUserImg>

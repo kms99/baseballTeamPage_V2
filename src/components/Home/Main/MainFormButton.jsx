@@ -4,7 +4,7 @@ import { initTeams } from "../../../commonData";
 import { useSelector } from "react-redux";
 
 const MainFormButton = ({ children }) => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
   return (
     <StFormButton type="submit" selected={selectTeam}>

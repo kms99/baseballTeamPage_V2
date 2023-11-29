@@ -3,10 +3,10 @@ import styled from "styled-components";
 import { initTeams } from "../../commonData";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setTeam } from "../../redux/modules/team";
+import { setTeam } from "../../redux/modules/teamSlice";
 
 const HeaderButton = ({ title, value }) => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
