@@ -38,7 +38,7 @@ export const __getCurrentUser = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const response = await api.get("/user", payload);
-      console.log(response);
+      toast.success(`${response.data.nickname}님 환영합니다.`);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       console.log(err);
