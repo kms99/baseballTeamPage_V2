@@ -19,6 +19,10 @@ const StContainerDiv = styled.div`
   background-color: rgba(255, 255, 255, 0.6);
   width: 80%;
   border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   height: auto;
   margin: auto;
   padding: 3rem;

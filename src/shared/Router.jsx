@@ -1,18 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "../components/Header/Header";
-import { Home, Detail, LoginSignUp, Profile, PrivateRoute } from "../pages";
+import { Detail, LoginSignUp, Profile, PrivateRoute } from "../pages";
+import Layout from "../components/Layout/Layout";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header>
-        <Routes>
-          <Route path="loginSignUp/:mode" element={<LoginSignUp />} />
-          <Route path="/" element={<PrivateRoute />} />
+      <Routes>
+        <Route path="loginSignUp/:mode" element={<LoginSignUp />} />
+
+        <Route path="/" element={<Layout />}>
+          <Route index element={<PrivateRoute />} />
           <Route path="detail/:id" element={<Detail />} />
           <Route path="profile" element={<Profile />} />
-        </Routes>
-      </Header>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 };
