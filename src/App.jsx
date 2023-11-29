@@ -1,9 +1,9 @@
 import styled, { ThemeProvider } from "styled-components";
 import Router from "./shared/Router";
 import theme from "./style/theme";
-import GlobalStyle from "./GlobalStyle";
 import GlobalFont from "./style/fonts";
 import background from "./style/image/background.jpg";
+import GlobalStyle from "./style/GlobalStyle";
 
 function App() {
   return (

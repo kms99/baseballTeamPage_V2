@@ -1,6 +1,6 @@
 import Detail from "./Detail";
 import Home from "./Home";
-import Login from "./Login";
+import LoginSignUp from "./LoginSignUp";
 import Profile from "./Profile";
 
-export { Detail, Login, Profile, Home };
+export { Detail, LoginSignUp, Profile, Home };

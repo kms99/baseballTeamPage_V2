@@ -63,3 +63,20 @@ export const dateFormat = (inputDate) => {
   const commentDate = `${date.getFullYear()}/${month}/${day}  ${hour}:${minute}:${second}`;
   return commentDate;
 };
+
+export const LOGIN_SIGNUP_MODE = {
+  login: {
+    text: "로그인",
+    changeModeText: "회원가입",
+    changeModeLinkParams: "signUp",
+    handler: null,
+    showNickNameInput: false,
+  },
+  signUp: {
+    text: "회원가입",
+    changeModeText: "로그인",
+    changeModeLinkParams: "login",
+    handler: null,
+    showNickNameInput: true,
+  },
+};
