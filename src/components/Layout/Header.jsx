@@ -7,10 +7,11 @@ import { useDispatch, useSelector } from "react-redux";
 import HeaderLoginButton from "./HeaderLoginButton";
 import { logoutUser } from "../../redux/modules/authSlice";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const Header = ({ children }) => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
   const userData = useSelector((state) => state.authSlice.userData);
@@ -25,9 +26,13 @@ const Header = ({ children }) => {
     toast.info("로그아웃 되었습니다.");
   };
 
+  const goToProfilePage = () => {
+    navigate("/profile");
+  };
+
   // 로그인 버튼
   const LOGIN_AREA_BUTTONS = [
-    { id: 0, text: "내정보", handler: null, isLogin: true },
+    { id: 0, text: "내정보", handler: goToProfilePage, isLogin: true },
     { id: 1, text: "로그아웃", handler: logOutHandler, isLogin: true },
   ];
 

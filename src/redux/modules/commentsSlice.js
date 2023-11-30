@@ -14,7 +14,7 @@ export const __getComments = createAsyncThunk(
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       toast.error(err.message);
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue();
     }
   }
 );
@@ -28,7 +28,7 @@ export const __getDetailComments = createAsyncThunk(
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       toast.error(err.message);
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue();
     }
   }
 );
@@ -45,7 +45,7 @@ export const __postComments = createAsyncThunk(
     } catch (err) {
       console.log(err);
       toast.error(err.message);
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue();
     }
   }
 );
@@ -63,21 +63,26 @@ export const __updateComments = createAsyncThunk(
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       toast.error(err.response.data.message);
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue();
     }
   }
 );
 
+// 게시물 삭제하기
 export const __deleteComments = createAsyncThunk(
   "deleteComments",
   async (payload, thunkAPI) => {
     try {
-      const response = await comment.delete("/letters", payload);
+      await comment.delete(`/letters/${payload}`);
+      const response = await comment.get(
+        "/letters?_sort=createdAt,views&_order=desc"
+      );
+
       toast.success(`성공적으로 게시물이 삭제 되었습니다.`);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       toast.error(err.response.data.message);
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue();
     }
   }
 );
@@ -86,8 +91,6 @@ const initialState = {
   comments: [],
   findData: {},
   isLoading: false,
-  isError: false,
-  error: null,
 };
 
 const commentsSlice = createSlice({
@@ -96,58 +99,58 @@ const commentsSlice = createSlice({
   extraReducers: {
     [__getComments.pending]: (state) => {
       state.isLoading = true;
-      state.isError = false;
     },
     [__getComments.fulfilled]: (state, action) => {
       state.comments = action.payload;
       state.isLoading = false;
-      state.isError = false;
     },
-    [__getComments.rejected]: (state, action) => {
+    [__getComments.rejected]: (state) => {
       state.isLoading = false;
-      state.isError = true;
-      state.error = action.payload;
     },
 
     [__getDetailComments.pending]: (state) => {
       state.isLoading = true;
-      state.isError = false;
     },
     [__getDetailComments.fulfilled]: (state, action) => {
       state.findData = action.payload;
       state.isLoading = false;
-      state.isError = false;
     },
-    [__getDetailComments.rejected]: (state, action) => {
+    [__getDetailComments.rejected]: (state) => {
       state.isLoading = false;
-      state.isError = true;
-      state.error = action.payload;
     },
 
     [__updateComments.pending]: (state) => {
       state.isLoading = true;
-      state.isError = false;
     },
 
     [__updateComments.fulfilled]: (state, action) => {
       state.findData = action.payload;
       state.isLoading = false;
-      state.isError = false;
     },
-    [__updateComments.rejected]: (state, action) => {
+    [__updateComments.rejected]: (state) => {
       state.isLoading = false;
-      state.isError = true;
-      state.error = action.payload;
     },
 
-    [__postComments]: (state, action) => {
+    [__postComments.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__postComments.fulfilled]: (state, action) => {
       state.comments.push(action.payload);
+      state.isLoading = false;
+    },
+    [__postComments.rejected]: (state) => {
+      state.isLoading = false;
     },
 
-    [__deleteComments]: (state, action) => {
-      state.comments = state.comments.filter(
-        (comment) => comment.id !== action.payload
-      );
+    [__deleteComments.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__deleteComments.fulfilled]: (state, action) => {
+      state.comments = action.payload;
+      state.isLoading = false;
+    },
+    [__deleteComments.rejected]: (state) => {
+      state.isLoading = false;
     },
   },
 });

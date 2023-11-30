@@ -4,7 +4,6 @@ import MainFormButton from "./MainFormButton";
 import MainFormTeamSelectBox from "./MainFormTeamSelectBox";
 import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
-import avatar from "../../../style/image/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
   __getComments,
@@ -33,10 +32,10 @@ const MainForm = () => {
       id: uuidv4(),
       nickname: userInfo.nickname,
       content: contentTextAreaValue,
-      avatar: "dummy",
+      avatar: userInfo.avatar,
       team: initTeams[selectTeam].text,
       createdAt: new Date().getTime(),
-      userId: userInfo.id,
+      userId: userInfo.userId,
     };
     // input 값 초기화
     setContentTextAreaValue("");

@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { initTeams } from "../commonData";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MainForm from "../components/Home/Main/MainForm";
 import MainCard from "../components/Home/Main/MainCard";
 import { __getCurrentUser } from "../redux/modules/authSlice";
+import { __getComments } from "../redux/modules/commentsSlice";
 
 const Home = () => {
   const allComment = useSelector((state) => state.commentsSlice.comments);
-
   const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
-  const filteredComments = allComment.filter(
+  let filteredComments = allComment.filter(
     (comments) => comments.team === initTeams[selectTeam].text
   );
+
+  const dispatch = useDispatch();
+
+  // 게시물 가져오기
+  useEffect(() => {
+    dispatch(__getComments());
+  }, []);
+
+  useEffect(() => {
+    dispatch(__getCurrentUser());
+  }, []);
 
   let currentTeamComments = (
     <>

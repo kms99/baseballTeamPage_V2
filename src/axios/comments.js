@@ -38,6 +38,8 @@ instance.interceptors.response.use(
   },
   //오류를 내보내기 전
   (err) => {
+    // TODO JWT 인증서버 API 확인
+    window.location.reload();
     return Promise.reject(err);
   }
 );

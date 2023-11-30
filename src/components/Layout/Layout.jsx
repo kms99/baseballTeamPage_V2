@@ -5,12 +5,12 @@ import { __getComments } from "../../redux/modules/commentsSlice";
 import { useDispatch } from "react-redux";
 
 const Layout = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  // 게시물 가져오기
-  useEffect(() => {
-    dispatch(__getComments());
-  }, []);
+  // // 게시물 가져오기
+  // useEffect(() => {
+  //   dispatch(__getComments());
+  // }, []);
 
   return (
     <>

@@ -8,10 +8,10 @@ import { useNavigate } from "react-router-dom";
 import DetailPageCommentModifyBtn from "./DetailPageCommentModifyBtn";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  __deleteComments,
   __getComments,
   __getDetailComments,
   __updateComments,
-  deleteComment,
 } from "../../redux/modules/commentsSlice";
 
 const DetailPageCardCommentContainer = () => {
@@ -19,7 +19,9 @@ const DetailPageCardCommentContainer = () => {
 
   const navigate = useNavigate();
 
-  const findData = useSelector((state) => state.commentsSlice.findData);
+  const findData = useSelector((state) => state.commentsSlice.findData); //userId
+
+  const currentUser = useSelector((state) => state.authSlice.userData); //userId
 
   const [modifyMode, setModifyMode] = useState(false);
 
@@ -64,7 +66,7 @@ const DetailPageCardCommentContainer = () => {
 
   const deleteCommentHandler = () => {
     if (window.confirm("정말로 삭제하시겠습니까?")) {
-      dispatch(deleteComment());
+      dispatch(__deleteComments(findData.id));
       navigate("/");
     }
   };
@@ -82,7 +84,9 @@ const DetailPageCardCommentContainer = () => {
   return (
     <StUserCommentContainer>
       <StDate>{formatDate}</StDate>
-      <StCommentButtonContainer>
+      <StCommentButtonContainer
+        $myPost={findData.userId === currentUser.userId}
+      >
         <DetailPageCardButton
           buttonImg={modifyImg}
           buttonEventHandler={changeModifyModeHandler}
@@ -150,6 +154,7 @@ const StDate = styled.span`
 
 const StCommentButtonContainer = styled.div`
   position: absolute;
+  display: ${(props) => (props.$myPost ? "block" : "none")};
   right: 1rem;
   top: 1rem;
   & button + button {

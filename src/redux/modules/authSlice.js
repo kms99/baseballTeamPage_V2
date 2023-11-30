@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axios from "axios";
+import avatar from "../../style/image/avatar.png";
 
 // 회원가입
 export const __signUpUser = createAsyncThunk(
@@ -27,6 +28,14 @@ export const __signUpUser = createAsyncThunk(
 export const __loginUser = createAsyncThunk(
   "loginUser",
   async (payload, thunkAPI) => {
+    const convertURLtoFile = async (url) => {
+      const response = await fetch(url);
+      const data = await response.blob();
+      const ext = url.split(".").pop();
+      const filename = url.split("/").pop();
+      const metadata = { type: `image/${ext}` };
+      return new File([data], filename, metadata);
+    };
     try {
       const response = await axios.post(
         `${process.env.REACT_APP_USER_API_URL}/login?expiresIn=10m`,
@@ -36,6 +45,20 @@ export const __loginUser = createAsyncThunk(
       toast.success(`${response.data.nickname}님 환영합니다.`);
 
       localStorage.setItem("token", response.data.accessToken);
+
+      if (!response.data.avatar) {
+        const fileRef = await convertURLtoFile(avatar);
+        await axios.patch(
+          `${process.env.REACT_APP_USER_API_URL}/profile`,
+          { avatar: fileRef },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              Authorization: `Bearer ${response.data.accessToken}`,
+            },
+          }
+        );
+      }
 
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
@@ -66,8 +89,6 @@ export const __getCurrentUser = createAsyncThunk(
         headers
       );
 
-      toast.success(`${response.data.nickname}님 환영합니다.`);
-
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       toast.error("로그인을 진행하세요");
@@ -77,17 +98,51 @@ export const __getCurrentUser = createAsyncThunk(
   }
 );
 
+// 프로필 업데이트
 export const __updateProfile = createAsyncThunk(
   "updateProfile",
   async (payload, thunkAPI) => {
+    const token = localStorage.getItem("token");
+    const updateCommentsUserData = async (id, changeUserInfo) => {
+      await axios.patch(`http://localhost:4000/letters/${id}`, changeUserInfo);
+    };
     try {
+      // 프로필 업데이트 실행
       const response = await axios.patch(
         `${process.env.REACT_APP_USER_API_URL}/profile`,
-        payload
+        payload.formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
+
+      // 프로필 업데이트에 따른 게시물 업데이트
+      // (1) 변경 데이터 제작
+      const changeUserInfo = {};
+      if (response.data.nickname)
+        changeUserInfo["nickname"] = response.data.nickname;
+      if (response.data.avatar) changeUserInfo["avatar"] = response.data.avatar;
+
+      // (2) 변경할 문서 아이디 가져오기 (현재 유저와 같은 아이디인 게시물)
+      const targetCommentsId = thunkAPI
+        .getState()
+        .commentsSlice.comments.filter(
+          (comment) => comment.userId === payload.userId
+        )
+        .map((comment) => comment.id);
+
+      // (3) 변경할 문서에 변경데이터를 업데이트
+      for (let id of targetCommentsId) {
+        await updateCommentsUserData(id, changeUserInfo);
+      }
+
+      toast.success(response.data.message);
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue();
     }
   }
 );
@@ -126,9 +181,9 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [__loginUser.fulfilled]: (state, action) => {
-      const { userId, success, avatar, nickname } = action.payload;
+      const { userId, avatar, nickname } = action.payload;
       state.isLoading = false;
-      state.userData = { userId, success, avatar, nickname };
+      state.userData = { userId, avatar, nickname };
       state.isLogin = true;
     },
     [__loginUser.rejected]: (state) => {
@@ -139,20 +194,27 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [__getCurrentUser.fulfilled]: (state, action) => {
+      const { id, avatar, nickname } = action.payload;
       state.isLoading = false;
-      state.userData = action.payload;
+      state.userData = { userId: id, avatar, nickname };
       state.isLogin = true;
     },
     [__getCurrentUser.rejected]: (state) => {
       state.isLoading = false;
+      state.isLogin = false;
     },
 
     [__updateProfile.pending]: (state) => {
       state.isLoading = true;
     },
     [__updateProfile.fulfilled]: (state, action) => {
+      const { avatar, nickname } = action.payload;
       state.isLoading = false;
-      state.userData = action.payload;
+      state.userData = {
+        ...state.userData,
+        avatar: avatar || state.userData.avatar,
+        nickname: nickname || state.userData.nickname,
+      };
     },
     [__updateProfile.rejected]: (state) => {
       state.isLoading = false;
