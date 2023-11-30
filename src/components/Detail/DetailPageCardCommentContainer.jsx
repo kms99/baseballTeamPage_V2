@@ -8,9 +8,10 @@ import { useNavigate } from "react-router-dom";
 import DetailPageCommentModifyBtn from "./DetailPageCommentModifyBtn";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  __getComments,
+  __getDetailComments,
+  __updateComments,
   deleteComment,
-  editComment,
-  setCurrentCommentData,
 } from "../../redux/modules/commentsSlice";
 
 const DetailPageCardCommentContainer = () => {
@@ -22,9 +23,13 @@ const DetailPageCardCommentContainer = () => {
 
   const [modifyMode, setModifyMode] = useState(false);
 
-  const [modifyValue, setModifyValue] = useState(findData.content);
+  const [modifyValue, setModifyValue] = useState("");
 
   const formatDate = dateFormat(findData.createdAt);
+
+  useEffect(() => {
+    setModifyValue(findData.content);
+  }, [findData]);
 
   const changeModifyModeHandler = () => {
     setModifyMode((prev) => {
@@ -47,9 +52,13 @@ const DetailPageCardCommentContainer = () => {
       return;
     }
 
-    dispatch(editComment(modifyValue));
-    dispatch(setCurrentCommentData(findData.id));
-
+    dispatch(
+      __updateComments({
+        updateTargetId: findData.id,
+        updateData: { content: modifyValue },
+      })
+    );
+    dispatch(__getComments());
     setModifyMode(false);
   };
 

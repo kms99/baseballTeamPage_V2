@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { initTeams } from "../commonData";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import MainForm from "../components/Home/Main/MainForm";
 import MainCard from "../components/Home/Main/MainCard";
+import { __getCurrentUser } from "../redux/modules/authSlice";
 
 const Home = () => {
   const allComment = useSelector((state) => state.commentsSlice.comments);

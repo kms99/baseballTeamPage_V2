@@ -6,7 +6,10 @@ import { v4 as uuidv4 } from "uuid";
 import styled from "styled-components";
 import avatar from "../../../style/image/avatar.png";
 import { useDispatch, useSelector } from "react-redux";
-import { __postComments } from "../../../redux/modules/commentsSlice";
+import {
+  __getComments,
+  __postComments,
+} from "../../../redux/modules/commentsSlice";
 import MainFormTextarea from "./MainFormTextarea";
 
 const MainForm = () => {
@@ -38,6 +41,7 @@ const MainForm = () => {
     // input 값 초기화
     setContentTextAreaValue("");
     dispatch(__postComments(newComment));
+    dispatch(__getComments());
   };
 
   //comment Value Handler

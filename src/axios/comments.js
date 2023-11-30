@@ -6,12 +6,27 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   //요청을 보내기 전
-  (config) => {
-    return config;
+  async (config) => {
+    const token = localStorage.getItem("token");
+    try {
+      await axios.get(`${process.env.REACT_APP_USER_API_URL}/user`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return config;
+    } catch (err) {
+      console.log(err);
+      const error = new Error(
+        "로그인 정보가 잘못되었습니다. 게시물을 불러올 수 없습니다."
+      );
+      return Promise.reject(error);
+    }
   },
+
   //오류 요청을 보내기 후
   (err) => {
-    // toast.error(Promise.reject(err).data);
     return Promise.reject(err);
   }
 );
