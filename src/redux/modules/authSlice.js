@@ -151,6 +151,7 @@ const defaultValue = {
   isLoading: false,
   isLogin: false,
   userData: null,
+  signInSuccess: false,
 };
 
 const initialState = {
@@ -167,16 +168,20 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
+    // 회원가입
     [__signUpUser.pending]: (state) => {
       state.isLoading = true;
+      state.signInSuccess = false;
     },
     [__signUpUser.fulfilled]: (state) => {
       state.isLoading = false;
+      state.signInSuccess = true;
     },
     [__signUpUser.rejected]: (state) => {
       state.isLoading = false;
+      state.signInSuccess = false;
     },
-
+    // 로그인
     [__loginUser.pending]: (state) => {
       state.isLoading = true;
     },
@@ -189,7 +194,7 @@ const authSlice = createSlice({
     [__loginUser.rejected]: (state) => {
       state.isLoading = false;
     },
-
+    // 유저 정보 가져오기
     [__getCurrentUser.pending]: (state) => {
       state.isLoading = true;
     },
@@ -203,7 +208,7 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.isLogin = false;
     },
-
+    // 프로필 업데이트
     [__updateProfile.pending]: (state) => {
       state.isLoading = true;
     },

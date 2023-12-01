@@ -7,18 +7,26 @@ import { __loginUser, __signUpUser } from "../../redux/modules/authSlice";
 import { toast } from "react-toastify";
 
 const INPUT_TYPE = [
-  { mode: "all", placeholder: "아이디 (4~10글자)", type: "text", key: "id" },
+  {
+    mode: "all",
+    placeholder: "아이디 (4~10글자)",
+    type: "text",
+    key: "id",
+    maxNum: 10,
+  },
   {
     mode: "all",
     placeholder: "비밀번호 (4~15글자)",
     type: "password",
     key: "password",
+    maxNum: 15,
   },
   {
     mode: "signUp",
     placeholder: "닉네임 (1~10글자)",
     type: "text",
     key: "nickname",
+    maxNum: 10,
   },
 ];
 
@@ -27,17 +35,30 @@ const LoginSignUpForm = ({ currentMode, mode }) => {
 
   const navigate = useNavigate();
 
-  const isLogin = useSelector((state) => state.authSlice.isLogin);
-
-  useEffect(() => {
-    if (isLogin) navigate("/");
-  }, [isLogin]);
-
   const [userAuthInput, setUserAuthInput] = useState({
     id: "",
     password: "",
     nickname: "",
   });
+
+  const isLogin = useSelector((state) => state.authSlice.isLogin);
+
+  const isSignInSuccess = useSelector((state) => state.authSlice.signInSuccess);
+
+  useEffect(() => {
+    if (isLogin) navigate("/");
+  }, [isLogin]);
+
+  useEffect(() => {
+    if (isSignInSuccess) {
+      setUserAuthInput({
+        id: "",
+        password: "",
+        nickname: "",
+      });
+      navigate("/loginSignUp/login");
+    }
+  }, [isSignInSuccess]);
 
   const validationCheck = (str, range) => {
     if (range[0] <= str.length && str.length <= range[1]) {
@@ -70,8 +91,6 @@ const LoginSignUpForm = ({ currentMode, mode }) => {
     if (mode === "signUp") {
       const signUpData = userAuthInput;
       dispatch(__signUpUser(signUpData));
-      navigate("/loginSignUp/login");
-      setUserAuthInput({ id: "", password: "", nickname: "" });
     } else if (mode === "login") {
       const { id, password } = userAuthInput;
       const loginData = { id, password };
@@ -89,6 +108,7 @@ const LoginSignUpForm = ({ currentMode, mode }) => {
       keyValue={input.key}
       setUserAuthInput={setUserAuthInput}
       userAuthInput={userAuthInput}
+      maxNum={input.maxNum}
     />
   ));
 

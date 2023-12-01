@@ -2,18 +2,18 @@
   "letters": [
     {
       "id": "db5f68c5-eb3e-47ec-bc46-a3832eb6bfba",
-      "nickname": "손흥민 클루셉123",
+      "nickname": "김명섭",
       "content": "2313213",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "두산 베어스",
       "createdAt": 1701363557968,
       "userId": "audtjq1234"
     },
     {
       "id": "2dc0a644-16c3-437a-af18-65ba76bc4312",
-      "nickname": "손흥민 클루셉123",
+      "nickname": "김명섭",
       "content": "두산베어스\n화이팅!!\n12412465ㅛ5",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "두산 베어스",
       "createdAt": 1701363607131,
       "userId": "audtjq1234"
@@ -38,54 +38,54 @@
     },
     {
       "id": "f26663dc-3277-4de4-8736-bf9c1cc2d9f2",
-      "nickname": "손흥민 클루셉123",
+      "nickname": "김명섭",
       "content": "나는 손흥민이다!\n토트넘 화이팅!!!1234134",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "두산 베어스",
       "createdAt": 1701370127828,
       "userId": "audtjq1234"
     },
     {
       "id": "eb0081b4-3500-48ee-a08e-b8f92782f4ae",
-      "nickname": "손흥민 클루셉123",
-      "content": "여기가 LG 게시판인가",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "nickname": "김명섭",
+      "content": "여기가 LG 게시판인가s",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "LG 트윈스",
       "createdAt": 1701370277229,
       "userId": "audtjq1234"
     },
     {
       "id": "4cfe9d86-2c1f-4eb0-b3b5-cdd4ee40ef8a",
-      "nickname": "손흥민 클루셉123",
+      "nickname": "김명섭",
       "content": "ㅇㅀㅇㅎ",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "SSG 랜더스",
       "createdAt": 1701370312990,
       "userId": "audtjq1234"
     },
     {
       "id": "ba475b0b-f0dd-42f1-b08c-6d78d2084e75",
-      "nickname": "손흥민 클루셉123",
+      "nickname": "김명섭",
       "content": "23414",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "롯데 자이언츠",
       "createdAt": 1701370385521,
       "userId": "audtjq1234"
     },
     {
       "id": "dc01f5ed-5dee-4628-b734-1e46a3b77bc9",
-      "nickname": "손흥민 클루셉123",
+      "nickname": "김명섭",
       "content": "124124",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "두산 베어스",
       "createdAt": 1701370901095,
       "userId": "audtjq1234"
     },
     {
       "id": "b62c3cd4-88e9-49ea-bbbc-0f896ad3f73e",
-      "nickname": "손흥민 클루셉123",
+      "nickname": "김명섭",
       "content": "124124",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-11-30/2dc6711a-6394-4ff5-91f4-3f0e0d992b7f.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
       "team": "두산 베어스",
       "createdAt": 1701370911504,
       "userId": "audtjq1234"
@@ -125,6 +125,15 @@
       "team": "두산 베어스",
       "createdAt": 1701372327179,
       "userId": "audtjq55"
+    },
+    {
+      "id": "3982fc3f-7ee3-4c2c-b06e-89e8e818edc5",
+      "nickname": "김명섭",
+      "content": "프로필 테스트용",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/b484bb2c-fdd3-4a61-9337-ed2d58df5cac.jpg",
+      "team": "두산 베어스",
+      "createdAt": 1701395724485,
+      "userId": "audtjq1234"
     }
   ]
 }

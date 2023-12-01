@@ -6,6 +6,7 @@ const LoginSignUpInput = ({
   keyValue,
   setUserAuthInput,
   userAuthInput,
+  maxNum,
 }) => {
   const inputValueChangeHandler = (e) => {
     setUserAuthInput((prev) => {
@@ -18,6 +19,7 @@ const LoginSignUpInput = ({
       type={type}
       onChange={inputValueChangeHandler}
       value={userAuthInput[keyValue]}
+      maxLength={maxNum}
     ></StInput>
   );
 };

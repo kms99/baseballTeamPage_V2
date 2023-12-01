@@ -4,10 +4,10 @@ import HeaderTitle from "./HeaderTitle";
 import styled from "styled-components";
 import HeaderButton from "./HeaderButton";
 import { useDispatch, useSelector } from "react-redux";
-import HeaderLoginButton from "./HeaderLoginButton";
 import { logoutUser } from "../../redux/modules/authSlice";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import Button from "../common/Button";
 
 const Header = ({ children }) => {
   const dispatch = useDispatch();
@@ -22,6 +22,8 @@ const Header = ({ children }) => {
   ));
 
   const logOutHandler = () => {
+    if (!window.confirm("정말 로그아웃 하시겠습니까?")) return;
+
     dispatch(logoutUser());
     toast.info("로그아웃 되었습니다.");
   };
@@ -38,7 +40,16 @@ const Header = ({ children }) => {
 
   // 로그인 상태에 따라 버튼 필터링
   const loginButtons = LOGIN_AREA_BUTTONS.map((btn) => (
-    <HeaderLoginButton key={btn.id} text={btn.text} handler={btn.handler} />
+    <Button
+      key={btn.id}
+      text={btn.text}
+      handler={btn.handler}
+      style={{
+        color: "#FFFFFF",
+        hoverColor: "#000000",
+        fontSize: "2rem",
+      }}
+    />
   ));
 
   return (

@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import styled from "styled-components";
 import { __getCurrentUser, __updateProfile } from "../redux/modules/authSlice";
+import ProfileAvatarArea from "../components/Profile/ProfileAvatarArea";
+import Button from "../components/common/Button";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -39,6 +41,11 @@ const Profile = () => {
     setProfileEditMode((prev) => (prev ? false : true));
   };
 
+  const cancelEditMode = () => {
+    if (!window.confirm("변경작업을 취소 하시겠습니까")) return;
+    toggleEditModeHandler();
+  };
+
   const userNicknameChangeHandler = (e) => {
     setEditProfileValue((prev) => {
       return { ...prev, nickname: e.target.value };
@@ -67,6 +74,8 @@ const Profile = () => {
       return;
     }
 
+    if (!window.confirm("정말 수정하시겠습니까")) return;
+
     const formData = new FormData();
     if (editProfileValue.avatar)
       formData.append("avatar", editProfileValue.avatar);
@@ -76,25 +85,20 @@ const Profile = () => {
     dispatch(__updateProfile({ formData, userId: userProfileData.userId }));
   };
 
+  const PROFILE_EDIT_BUTTON = [
+    { text: "수정완료", handler: updateProfileHandler, mode: true },
+    { text: "취소하기", handler: cancelEditMode, mode: true },
+    { text: "수정하기", handler: toggleEditModeHandler, mode: false },
+  ];
+
   return (
     <StProfileContainerDiv>
       <h1> 프로필 관리</h1>
-      <StAvatarImageFigure>
-        <img src={editProfileValue.avatarPreview} />
-        {profileEditMode ? (
-          <label htmlFor="avatarImage">파일 선택</label>
-        ) : null}
-        <input
-          id="avatarImage"
-          onChange={userAvatarImageChangeHandler}
-          type="file"
-          accept="image/jpeg,image/jpg"
-          style={{ display: "none" }}
-          files={editProfileValue.avatar}
-          value={editProfileValue.avatarName || ""}
-        />
-      </StAvatarImageFigure>
-
+      <ProfileAvatarArea
+        editProfileValue={editProfileValue}
+        userAvatarImageChangeHandler={userAvatarImageChangeHandler}
+        profileEditMode={profileEditMode}
+      />
       {profileEditMode ? (
         <StNicknameInput
           value={editProfileValue.nickname}
@@ -103,18 +107,22 @@ const Profile = () => {
       ) : (
         <h2>{editProfileValue.nickname}</h2>
       )}
-
       <span>{userProfileData.userId}</span>
-
       <div>
-        {profileEditMode ? (
-          <>
-            <button onClick={updateProfileHandler}>수정완료</button>
-            <button onClick={toggleEditModeHandler}>취소하기</button>
-          </>
-        ) : (
-          <button onClick={toggleEditModeHandler}>수정하기</button>
-        )}
+        {PROFILE_EDIT_BUTTON.filter(
+          (buttonInfo) => buttonInfo.mode === profileEditMode
+        ).map((button) => (
+          <Button
+            key={button.text}
+            text={button.text}
+            handler={button.handler}
+            style={{
+              color: "#000000",
+              hoverColor: "#FFFFFF",
+              fontSize: "2rem",
+            }}
+          />
+        ))}
       </div>
     </StProfileContainerDiv>
   );
@@ -147,40 +155,6 @@ const StProfileContainerDiv = styled.div`
     font-size: 1.5rem;
     color: #474747;
     margin: 1rem 0 3rem 0;
-  }
-  & button {
-    padding: 0.5rem 1rem;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-`;
-
-const StAvatarImageFigure = styled.figure`
-  position: relative;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  margin-bottom: 2rem;
-  & img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-  }
-  & label {
-    color: white;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.5);
-    cursor: pointer;
   }
 `;
 
