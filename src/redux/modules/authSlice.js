@@ -39,7 +39,7 @@ export const __loginUser = createAsyncThunk(
     };
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_USER_API_URL}/login?expiresIn=10m`,
+        `${process.env.REACT_APP_USER_API_URL}/login`,
         payload
       );
 
