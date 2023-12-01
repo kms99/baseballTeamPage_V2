@@ -13,6 +13,7 @@ import {
   __getDetailComments,
   __updateComments,
 } from "../../redux/modules/commentsSlice";
+import { openModal } from "../../redux/modules/modalSlice";
 
 const DetailPageCardCommentContainer = () => {
   const dispatch = useDispatch();
@@ -48,12 +49,7 @@ const DetailPageCardCommentContainer = () => {
     setModifyValue(e.target.value);
   };
 
-  const modifyDoneHandler = () => {
-    if (findData.comment === modifyValue) {
-      alert("변경된 내용이 없습니다.");
-      return;
-    }
-
+  const modifyDoneEvent = () => {
     dispatch(
       __updateComments({
         updateTargetId: findData.id,
@@ -64,11 +60,32 @@ const DetailPageCardCommentContainer = () => {
     setModifyMode(false);
   };
 
-  const deleteCommentHandler = () => {
-    if (window.confirm("정말로 삭제하시겠습니까?")) {
-      dispatch(__deleteComments(findData.id));
-      navigate("/");
+  const modifyDoneClickHandler = () => {
+    if (findData.comment === modifyValue) {
+      alert("변경된 내용이 없습니다.");
+      return;
     }
+
+    dispatch(
+      openModal({
+        message: "글을 수정하시겠습니까?",
+        onConfirm: modifyDoneEvent,
+      })
+    );
+  };
+
+  const deleteCommentEvent = () => {
+    dispatch(__deleteComments(findData.id));
+    navigate("/");
+  };
+
+  const deleteCommentClickHandler = () => {
+    dispatch(
+      openModal({
+        message: "글을 삭제하시겠습니까?",
+        onConfirm: deleteCommentEvent,
+      })
+    );
   };
 
   const modifyModeCommentArea = modifyMode ? (
@@ -93,14 +110,14 @@ const DetailPageCardCommentContainer = () => {
         />
         <DetailPageCardButton
           buttonImg={deleteImg}
-          buttonEventHandler={deleteCommentHandler}
+          buttonEventHandler={deleteCommentClickHandler}
         />
       </StCommentButtonContainer>
       {modifyModeCommentArea}
       <StModifyDoneButtons $modify={modifyMode}>
         <DetailPageCommentModifyBtn
           btnText="수정완료"
-          clickEventHandler={modifyDoneHandler}
+          clickEventHandler={modifyDoneClickHandler}
         />
         <DetailPageCommentModifyBtn
           btnText="취소"

@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { __getCurrentUser, __updateProfile } from "../redux/modules/authSlice";
 import ProfileAvatarArea from "../components/Profile/ProfileAvatarArea";
 import Button from "../components/common/Button";
+import { openModal } from "../redux/modules/modalSlice";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -42,8 +43,12 @@ const Profile = () => {
   };
 
   const cancelEditMode = () => {
-    if (!window.confirm("변경작업을 취소 하시겠습니까")) return;
-    toggleEditModeHandler();
+    dispatch(
+      openModal({
+        message: "변경작업을 취소 하시겠습니까",
+        onConfirm: toggleEditModeHandler,
+      })
+    );
   };
 
   const userNicknameChangeHandler = (e) => {
@@ -65,17 +70,7 @@ const Profile = () => {
     });
   };
 
-  const updateProfileHandler = () => {
-    if (
-      editProfileValue.nickname === userProfileData.nickname &&
-      !editProfileValue.avatar
-    ) {
-      toast.error("변경된 사항이 없습니다.");
-      return;
-    }
-
-    if (!window.confirm("정말 수정하시겠습니까")) return;
-
+  const upDateProfileEvent = () => {
     const formData = new FormData();
     if (editProfileValue.avatar)
       formData.append("avatar", editProfileValue.avatar);
@@ -85,8 +80,25 @@ const Profile = () => {
     dispatch(__updateProfile({ formData, userId: userProfileData.userId }));
   };
 
+  const updateProfileClickHandler = () => {
+    if (
+      editProfileValue.nickname === userProfileData.nickname &&
+      !editProfileValue.avatar
+    ) {
+      toast.error("변경된 사항이 없습니다.");
+      return;
+    }
+
+    dispatch(
+      openModal({
+        message: "정말 수정하시겠습니까",
+        onConfirm: upDateProfileEvent,
+      })
+    );
+  };
+
   const PROFILE_EDIT_BUTTON = [
-    { text: "수정완료", handler: updateProfileHandler, mode: true },
+    { text: "수정완료", handler: updateProfileClickHandler, mode: true },
     { text: "취소하기", handler: cancelEditMode, mode: true },
     { text: "수정하기", handler: toggleEditModeHandler, mode: false },
   ];
