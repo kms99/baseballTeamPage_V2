@@ -2,6 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import axios from "axios";
 import avatar from "../../style/image/avatar.png";
+import comment from "../../axios/comments";
 
 // 회원가입
 export const __signUpUser = createAsyncThunk(
@@ -104,7 +105,7 @@ export const __updateProfile = createAsyncThunk(
   async (payload, thunkAPI) => {
     const token = localStorage.getItem("token");
     const updateCommentsUserData = async (id, changeUserInfo) => {
-      await axios.patch(`http://localhost:4000/letters/${id}`, changeUserInfo);
+      await comment.patch(`/letters/${id}`, changeUserInfo);
     };
     try {
       // 프로필 업데이트 실행
