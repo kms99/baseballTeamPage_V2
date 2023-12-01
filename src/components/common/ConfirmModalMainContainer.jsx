@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import styled from "styled-components";
-import { acceptConfirm, cancelConfirm } from "../../redux/modules/modalSlice";
+import { cancelConfirm } from "../../redux/modules/modalSlice";
 
 const ConfirmModalMainContainer = () => {
   const modalInfo = useSelector((state) => state.modalSlice);
@@ -18,8 +18,11 @@ const ConfirmModalMainContainer = () => {
     { text: "확인", handler: acceptConfirmHandler },
     { text: "취소", handler: cancelConfirmHandler },
   ];
+  const modalVisible = useSelector((state) => state.modalSlice.visible);
+  console.log(modalVisible);
   return (
-    <StConfirmModalContainerDiv>
+    <StConfirmModalContainerDiv $modalVisible={modalVisible}>
+      <h1>프로야구 Talk</h1>
       <h2>{modalInfo.confirmMessage}</h2>
       <div>
         {CONFIRM_MODAL_BUTTON.map((button) => (
@@ -42,9 +45,9 @@ const ConfirmModalMainContainer = () => {
 const StConfirmModalContainerDiv = styled.div`
   position: fixed;
   border-radius: 10px;
-  width: 30%;
+  width: auto;
   height: auto;
-  padding: 2rem 1rem;
+  padding: 5rem 2rem 3rem 2rem;
   left: 50%;
   top: 50%;
   display: flex;
@@ -52,13 +55,24 @@ const StConfirmModalContainerDiv = styled.div`
   align-items: center;
   transform: translate(-50%, -50%);
   background-color: #e4e4e4;
-  z-index: 20;
+  box-shadow: 1px 3px 18px -4px #555555;
+  z-index: ${(props) => (props.$modalVisible ? "10" : "-10")};
+  opacity: ${(props) => (props.$modalVisible ? "1" : "0")};
+  transition: opacity 0.3s;
+  & h1 {
+    position: absolute;
+    left: 2rem;
+    top: 1.5rem;
+    font-family: "BlackHanSans", sans-serif;
+    color: ${(props) => props.theme.subColor};
+    font-size: 1.5rem;
+  }
   & h2 {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
     font-weight: bold;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
     color: #000000;
   }
 `;

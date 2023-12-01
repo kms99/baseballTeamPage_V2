@@ -66,7 +66,7 @@ const Header = ({ children }) => {
 
   return (
     <>
-      {modalVisible ? <ConfirmModal /> : null}
+      <ConfirmModal />
       <StHeader selected={selectTeam}>
         <StLoginButtonArea>{!!userData && loginButtons}</StLoginButtonArea>
         <HeaderTitle />
