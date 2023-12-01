@@ -2,90 +2,90 @@
   "letters": [
     {
       "id": "db5f68c5-eb3e-47ec-bc46-a3832eb6bfba",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "2313213",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "두산 베어스",
       "createdAt": 1701363557968,
       "userId": "audtjq1234"
     },
     {
       "id": "2dc0a644-16c3-437a-af18-65ba76bc4312",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "두산베어스\n화이팅!!\n12412465ㅛ5",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "두산 베어스",
       "createdAt": 1701363607131,
       "userId": "audtjq1234"
     },
     {
       "id": "c750f6f4-ccc7-4eab-84de-7086e7e5715f",
-      "nickname": "아무개입니다",
+      "nickname": "홍길동",
       "content": "바뀌면 안되여",
-      "avatar": "dummy",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/a61edbf2-db35-4f63-aa77-65fabf9b6b82.jpg",
       "team": "두산 베어스",
       "createdAt": 1701367090213,
       "userId": "audtjq123"
     },
     {
       "id": "17c5274d-0a64-42a4-a88b-9b56838b84d4",
-      "nickname": "아무개입니다",
+      "nickname": "홍길동",
       "content": "ㅁㄴㅇㅀㅈㄷㄱ",
-      "avatar": "dummy",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/a61edbf2-db35-4f63-aa77-65fabf9b6b82.jpg",
       "team": "두산 베어스",
       "createdAt": 1701367093387,
       "userId": "audtjq123"
     },
     {
       "id": "f26663dc-3277-4de4-8736-bf9c1cc2d9f2",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "나는 졸리다!!",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "두산 베어스",
       "createdAt": 1701370127828,
       "userId": "audtjq1234"
     },
     {
       "id": "eb0081b4-3500-48ee-a08e-b8f92782f4ae",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "여기가 LG 게시판인가s",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "LG 트윈스",
       "createdAt": 1701370277229,
       "userId": "audtjq1234"
     },
     {
       "id": "4cfe9d86-2c1f-4eb0-b3b5-cdd4ee40ef8a",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "ㅇㅀㅇㅎ",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "SSG 랜더스",
       "createdAt": 1701370312990,
       "userId": "audtjq1234"
     },
     {
       "id": "ba475b0b-f0dd-42f1-b08c-6d78d2084e75",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "23414",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "롯데 자이언츠",
       "createdAt": 1701370385521,
       "userId": "audtjq1234"
     },
     {
       "id": "dc01f5ed-5dee-4628-b734-1e46a3b77bc9",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "124124",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "두산 베어스",
       "createdAt": 1701370901095,
       "userId": "audtjq1234"
     },
     {
       "id": "b62c3cd4-88e9-49ea-bbbc-0f896ad3f73e",
-      "nickname": "김명섭 모달완성!",
+      "nickname": "김명섭(React_3기)",
       "content": "124124",
-      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/8827d472-ed35-47e9-84da-e15cddc5d071.jpg",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/e81fcf9a-bce4-4171-bc19-ac596d7783b7.jpg",
       "team": "두산 베어스",
       "createdAt": 1701370911504,
       "userId": "audtjq1234"
@@ -125,6 +125,15 @@
       "team": "두산 베어스",
       "createdAt": 1701372327179,
       "userId": "audtjq55"
+    },
+    {
+      "id": "724c30b3-6db9-4323-9478-51d996a296a4",
+      "nickname": "홍길동",
+      "content": "여기가 LG 게시판 맞네요",
+      "avatar": "https://react-jwt-avatar.s3.ap-northeast-2.amazonaws.com/23-12-01/a61edbf2-db35-4f63-aa77-65fabf9b6b82.jpg",
+      "team": "LG 트윈스",
+      "createdAt": 1701423934020,
+      "userId": "audtjq123"
     }
   ]
 }

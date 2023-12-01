@@ -2,14 +2,19 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { dateFormat } from "../../../commonData";
+import { useSelector } from "react-redux";
 
 const MainCard = ({ filteredComment }) => {
+  const currentUserId = useSelector((state) => state.authSlice.userData.userId);
+
   const commentDate = dateFormat(filteredComment.createdAt);
 
   const navigate = useNavigate();
+
   const navigateToDetail = () => {
     navigate(`detail/${filteredComment.id}`);
   };
+
   return (
     <StLi key={filteredComment.id} onClick={navigateToDetail}>
       <StDateDiv>{commentDate}</StDateDiv>
@@ -18,6 +23,9 @@ const MainCard = ({ filteredComment }) => {
       <StCommentFirstLineDiv>
         <StTeamNameH3>{filteredComment.team}</StTeamNameH3>
         <StUserNameH2>{filteredComment.nickname} 님</StUserNameH2>
+        {filteredComment.userId === currentUserId ? (
+          <StMyCommentsSpan>My Comment</StMyCommentsSpan>
+        ) : null}
       </StCommentFirstLineDiv>
 
       <StCommentP>{filteredComment.content}</StCommentP>
@@ -72,6 +80,7 @@ const StCommentFirstLineDiv = styled.div`
   flex-direction: column;
   padding-left: 4.5rem;
   align-items: start;
+  position: relative;
 `;
 
 const StUserImg = styled.div`
@@ -87,5 +96,15 @@ const StDateDiv = styled.div`
   position: absolute;
   right: 1rem;
   top: 1rem;
+`;
+
+const StMyCommentsSpan = styled.span`
+  position: absolute;
+  bottom: 1rem;
+  right: 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: 2px solid #162a58;
+  color: #162a58;
 `;
 export default MainCard;

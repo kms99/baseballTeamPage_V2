@@ -55,7 +55,7 @@ const MainForm = () => {
         <MainFormTeamSelectBox />
         <StNicknameContainer>
           <label>닉네임</label>
-          <span>{userInfo.nickname}</span>
+          <span>{userInfo.nickname} 님</span>
         </StNicknameContainer>
         <MainFormTextarea
           contentTextareaChangeHandler={contentTextareaChangeHandler}
@@ -102,6 +102,7 @@ const StNicknameContainer = styled.div`
   font-size: 1.3rem;
   & span {
     font-size: 2rem;
+    color: ${(props) => props.theme.mainColor};
   }
 `;
 export default MainForm;

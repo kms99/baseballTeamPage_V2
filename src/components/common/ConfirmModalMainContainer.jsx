@@ -19,7 +19,6 @@ const ConfirmModalMainContainer = () => {
     { text: "취소", handler: cancelConfirmHandler },
   ];
   const modalVisible = useSelector((state) => state.modalSlice.visible);
-  console.log(modalVisible);
   return (
     <StConfirmModalContainerDiv $modalVisible={modalVisible}>
       <h1>프로야구 Talk</h1>
