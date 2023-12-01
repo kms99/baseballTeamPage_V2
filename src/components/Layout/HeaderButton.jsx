@@ -1,12 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { initTeams } from "../../commonData";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setTeam } from "../../redux/modules/team";
+import { setTeam } from "../../redux/modules/teamSlice";
 
 const HeaderButton = ({ title, value }) => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -24,14 +23,10 @@ const HeaderButton = ({ title, value }) => {
 //styled components
 const StBtn = styled.button`
   background: ${(props) =>
-    props.value === props.selected
-      ? props.theme.mainColor[initTeams[props.value].team]
-      : "transparent"};
+    props.value === props.selected ? props.theme.mainColor : "transparent"};
   transition: 0.5s;
   color: ${(props) =>
-    props.value === props.selected
-      ? props.theme.subColor[initTeams[props.value].team]
-      : "white"};
+    props.value === props.selected ? props.theme.subColor : "white"};
   border: 2px solid
     ${(props) => (props.value === props.selected ? "black" : "white")};
   padding: 0.5rem 1rem;
@@ -43,9 +38,8 @@ const StBtn = styled.button`
   cursor: pointer;
   &:active,
   &:hover {
-    background: ${(props) =>
-      props.theme.mainColor[initTeams[props.value].team]};
-    color: ${(props) => props.theme.subColor[initTeams[props.value].team]};
+    background: ${(props) => props.theme.mainColor};
+    color: ${(props) => props.theme.subColor};
   }
 `;
 export default HeaderButton;

@@ -3,12 +3,12 @@ import styled from "styled-components";
 import { initTeams } from "../../../commonData";
 import { useSelector } from "react-redux";
 
-const MainFormButton = ({ children }) => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+const MainFormButton = ({ text }) => {
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
 
   return (
     <StFormButton type="submit" selected={selectTeam}>
-      {children}
+      {text}
     </StFormButton>
   );
 };
@@ -18,9 +18,8 @@ const StFormButton = styled.button`
   width: 100%;
   height: 3rem;
   background: transparent;
-  border: 2px solid
-    ${(props) => props.theme.mainColor[initTeams[props.selected].team]};
-  color: ${(props) => props.theme.mainColor[initTeams[props.selected].team]};
+  border: 2px solid ${(props) => props.theme.mainColor};
+  color: ${(props) => props.theme.mainColor};
   font-weight: bold;
   cursor: pointer;
   transition: 0.5s;
@@ -28,9 +27,8 @@ const StFormButton = styled.button`
 
   &:active,
   &:hover {
-    background: ${(props) =>
-      props.theme.mainColor[initTeams[props.selected].team]};
-    color: ${(props) => props.theme.subColor[initTeams[props.selected].team]};
+    background: ${(props) => props.theme.mainColor};
+    color: ${(props) => props.theme.subColor};
   }
 `;
 

@@ -2,10 +2,10 @@ import React from "react";
 import { initTeams } from "../../../commonData";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { setTeam } from "../../../redux/modules/team";
+import { setTeam } from "../../../redux/modules/teamSlice";
 
 const MainFormTeamSelectBox = () => {
-  const selectTeam = useSelector(({ team }) => team.currentTeamIndex);
+  const selectTeam = useSelector((state) => state.teamSlice.currentTeamIndex);
   const dispatch = useDispatch();
 
   const commentSelectTeamHandler = (e) => {
@@ -22,7 +22,7 @@ const MainFormTeamSelectBox = () => {
 
   return (
     <>
-      <StSelectLabelDiv selected={selectTeam}>팀 선택</StSelectLabelDiv>
+      <label>팀 선택</label>
       <StSelect value={selectTeam} onChange={commentSelectTeamHandler}>
         {teamOption}
       </StSelect>
@@ -41,11 +41,6 @@ const StSelect = styled.select`
   color: white;
   border: 1px solid white;
   margin: 0.5rem 0 0.5rem 0;
-`;
-
-const StSelectLabelDiv = styled.div`
-  font-weight: bold;
-  color: ${(props) => props.theme.mainColor[initTeams[props.selected].team]};
 `;
 
 export default MainFormTeamSelectBox;

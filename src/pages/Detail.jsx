@@ -1,15 +1,23 @@
 import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import styled from "styled-components";
-import prevImg from "../image/prevBtn.svg";
+import prevImg from "../style/image/prevBtn.svg";
 import DetailPageCard from "../components/Detail/DetailPageCard";
-import { useDispatch, useSelector } from "react-redux";
-import { setCurrentCommentData } from "../redux/modules/comment";
+import { useDispatch } from "react-redux";
+import { __getDetailComments } from "../redux/modules/commentsSlice";
+import { __getCurrentUser } from "../redux/modules/authSlice";
 
 const Detail = () => {
   const params = useParams();
   const dispatch = useDispatch();
-  dispatch(setCurrentCommentData(params.id));
+
+  useEffect(() => {
+    dispatch(__getDetailComments(params.id));
+  }, []);
+
+  useEffect(() => {
+    dispatch(__getCurrentUser());
+  }, []);
 
   return (
     <div>

@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { dateFormat } from "../../commonData";
-import modifyImg from "../../image/modify.svg";
-import deleteImg from "../../image/delete.svg";
+import modifyImg from "../../style/image/modify.svg";
+import deleteImg from "../../style/image/delete.svg";
 import DetailPageCardButton from "./DetailPageCardButton";
 import { useNavigate } from "react-router-dom";
 import DetailPageCommentModifyBtn from "./DetailPageCommentModifyBtn";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteComment, modifyComment } from "../../redux/modules/comment";
+import {
+  __deleteComments,
+  __getComments,
+  __getDetailComments,
+  __updateComments,
+} from "../../redux/modules/commentsSlice";
+import { openModal } from "../../redux/modules/modalSlice";
 
 const DetailPageCardCommentContainer = () => {
-  const findData = useSelector(({ comment }) => comment.findData);
-  const [modifyMode, setModifyMode] = useState(false);
-  const [modifyValue, setModifyValue] = useState(findData.comment);
   const dispatch = useDispatch();
+
   const navigate = useNavigate();
-  const formatDate = dateFormat(findData.date);
-  const comment = useSelector(({ comment }) => comment.comments);
+
+  const findData = useSelector((state) => state.commentsSlice.findData); //userId
+
+  const currentUser = useSelector((state) => state.authSlice.userData); //userId
+
+  const [modifyMode, setModifyMode] = useState(false);
+
+  const [modifyValue, setModifyValue] = useState("");
+
+  const formatDate = dateFormat(findData.createdAt);
+
   useEffect(() => {
-    localStorage.setItem("comments", JSON.stringify(comment));
-  }, [comment]);
+    setModifyValue(findData.content);
+  }, [findData]);
+
   const changeModifyModeHandler = () => {
     setModifyMode((prev) => {
       if (prev) {
-        setModifyValue(findData.comment);
+        setModifyValue(findData.content);
         return false;
       } else {
         return true;
@@ -35,22 +49,45 @@ const DetailPageCardCommentContainer = () => {
     setModifyValue(e.target.value);
   };
 
-  const modifyDoneHandler = () => {
+  const modifyDoneEvent = () => {
+    dispatch(
+      __updateComments({
+        updateTargetId: findData.id,
+        updateData: { content: modifyValue },
+      })
+    );
+    dispatch(__getComments());
+    setModifyMode(false);
+  };
+
+  const modifyDoneClickHandler = () => {
     if (findData.comment === modifyValue) {
       alert("변경된 내용이 없습니다.");
       return;
     }
-    dispatch(modifyComment(modifyValue));
 
-    setModifyMode(false);
+    dispatch(
+      openModal({
+        message: "글을 수정하시겠습니까?",
+        onConfirm: modifyDoneEvent,
+      })
+    );
   };
 
-  const deleteCommentHandler = () => {
-    if (window.confirm("정말로 삭제하시겠습니까?")) {
-      dispatch(deleteComment());
-      navigate("/");
-    }
+  const deleteCommentEvent = () => {
+    dispatch(__deleteComments(findData.id));
+    navigate("/");
   };
+
+  const deleteCommentClickHandler = () => {
+    dispatch(
+      openModal({
+        message: "글을 삭제하시겠습니까?",
+        onConfirm: deleteCommentEvent,
+      })
+    );
+  };
+
   const modifyModeCommentArea = modifyMode ? (
     <StUserCommentTextArea
       value={modifyValue}
@@ -58,27 +95,29 @@ const DetailPageCardCommentContainer = () => {
       onChange={modifyValueChangeHandler}
     />
   ) : (
-    <StUserComment>{findData.comment}</StUserComment>
+    <StUserComment>{findData.content}</StUserComment>
   );
 
   return (
     <StUserCommentContainer>
       <StDate>{formatDate}</StDate>
-      <StCommentButtonContainer>
+      <StCommentButtonContainer
+        $myPost={findData.userId === currentUser.userId}
+      >
         <DetailPageCardButton
           buttonImg={modifyImg}
           buttonEventHandler={changeModifyModeHandler}
         />
         <DetailPageCardButton
           buttonImg={deleteImg}
-          buttonEventHandler={deleteCommentHandler}
+          buttonEventHandler={deleteCommentClickHandler}
         />
       </StCommentButtonContainer>
       {modifyModeCommentArea}
       <StModifyDoneButtons $modify={modifyMode}>
         <DetailPageCommentModifyBtn
           btnText="수정완료"
-          clickEventHandler={modifyDoneHandler}
+          clickEventHandler={modifyDoneClickHandler}
         />
         <DetailPageCommentModifyBtn
           btnText="취소"
@@ -103,9 +142,15 @@ const StUserCommentContainer = styled.div`
 const StUserComment = styled.p`
   font-size: 2rem;
   word-break: break-all;
-  width: 100%;
   padding: 2rem;
+  height: 80%;
   line-height: 2.5rem;
+  white-space: pre-line;
+  overflow-y: scroll;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
 `;
 
 const StUserCommentTextArea = styled.textarea`
@@ -126,6 +171,7 @@ const StDate = styled.span`
 
 const StCommentButtonContainer = styled.div`
   position: absolute;
+  display: ${(props) => (props.$myPost ? "block" : "none")};
   right: 1rem;
   top: 1rem;
   & button + button {

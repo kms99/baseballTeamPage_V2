@@ -1,8 +1,11 @@
-import { combineReducers, createStore } from "redux";
-import team from "../modules/team";
-import comment from "../modules/comment";
+import { configureStore } from "@reduxjs/toolkit";
+import teamSlice from "../modules/teamSlice";
+import commentsSlice from "../modules/commentsSlice";
+import authSlice from "../modules/authSlice";
+import modalSlice from "../modules/modalSlice";
 
-const rootReducer = combineReducers({ team, comment });
-const store = createStore(rootReducer);
+const store = configureStore({
+  reducer: { teamSlice, commentsSlice, authSlice, modalSlice },
+});
 
 export default store;
