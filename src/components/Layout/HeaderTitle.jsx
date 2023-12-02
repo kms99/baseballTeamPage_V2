@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import { initTeams } from "../../commonData";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 

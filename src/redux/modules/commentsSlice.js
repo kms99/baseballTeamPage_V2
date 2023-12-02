@@ -38,9 +38,11 @@ export const __postComments = createAsyncThunk(
   "postComments",
   async (payload, thunkAPI) => {
     try {
-      const response = await comment.post("/letters", payload);
+      await comment.post("/letters", payload);
+      const response = await comment.get(
+        "/letters?_sort=createdAt&_order=desc"
+      );
       toast.success(`성공적으로 게시물이 업로드 되었습니다.`);
-
       return thunkAPI.fulfillWithValue(response.data);
     } catch (err) {
       console.log(err);
@@ -135,7 +137,7 @@ const commentsSlice = createSlice({
       state.isLoading = true;
     },
     [__postComments.fulfilled]: (state, action) => {
-      state.comments.push(action.payload);
+      state.comments = action.payload;
       state.isLoading = false;
     },
     [__postComments.rejected]: (state) => {

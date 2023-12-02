@@ -20,8 +20,6 @@ const Header = ({ children }) => {
 
   const userData = useSelector((state) => state.authSlice.userData);
 
-  const modalVisible = useSelector((state) => state.modalSlice.visible);
-
   // Team Button 생성
   const teamButtons = initTeams.map((team, index) => (
     <HeaderButton key={team.team} title={team.text} value={index} />
