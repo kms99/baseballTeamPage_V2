@@ -1,13 +1,12 @@
-# 내일배움캠프 개인과제 - 팬레터 페이지
+# 내일배움캠프 개인과제 - 팬레터 페이지 리펙토링
 
 ## 프로젝트 정보
 
-- 주제 : 프로야구 10개 구단 응원페이지
-  ![image](https://github.com/kms99/react-baseballteampage/assets/29966870/858a01bc-99d3-4fdd-9277-de2d51b4f36a)
+![Alt text](image.png)
 
-- DEMO
+- 주제 : 프로야구 10개 구단 응원페이지 (기존 Redux 버전 redux-tookit 리펙토링)
 
-  https://react-baseballteampage.vercel.app/
+- DEMO : https://baseball-team-page-v2.vercel.app/
 
 ## 사용기술
 
@@ -18,29 +17,35 @@
 - Library :
   - uuid
   - styled-components
-  - redux
+  - redux-toolkit
+  - axios
+  - react-router-dom
+  - json-server
+  - react-spinners
+  - react-toastify
 
 ## 컴포넌트 구조
 
-- branch / props drilling
-  ![image](https://github.com/kms99/react-baseballteampage/assets/29966870/ab18c9df-4da2-408d-8327-4c967b350e67)
-
-- branch / context
-  ![image](https://github.com/kms99/react-baseballteampage/assets/29966870/485abd38-7a13-4f80-bb74-ac9c6e8b66b5)
-
-- branch / redux
-  ![image](https://github.com/kms99/react-baseballteampage/assets/29966870/6d71d362-50aa-480b-9f43-1396ee2398ca)
+![Alt text](image-1.png)
 
 ## 주요기능
 
+- 로그인/로그아웃 회원가입 기능
+
+![Alt text](<ezgif.com-video-to-gif (41).gif>)
+
+- 로그인 토큰 유지 기능
+
+![Alt text](<ezgif.com-video-to-gif (42).gif>)
+
 - 팀별 Theme 변경(styled-components ThemeProvider)
 
-  ![](<ezgif.com-video-to-gif (16).gif>)
+![Alt text](<ezgif.com-video-to-gif (43).gif>)
 
-- 응원글 상세 페이지 이동 (React-Router-Dom)
+- 응원의 말 CRUD
 
-  ![](<ezgif.com-video-to-gif (17).gif>)
+![Alt text](<ezgif.com-video-to-gif (44).gif>)
 
-- CRUD 구현
+- 프로필 변경
 
-  ![](<ezgif.com-video-to-gif (18).gif>)
+![Alt text](<ezgif.com-video-to-gif (45).gif>)
